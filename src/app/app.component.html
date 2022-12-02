@@ -1,29 +1,4 @@
 <div>
-  <h1>Hello Angular</h1>
+  <app-header></app-header>
+  <app-blog-overview-page></app-blog-overview-page>
 </div>
-
-{{ title }}
-
-<label for="name">Name: </label>
-<input id="name" type="text" [(ngModel)]="name">
-<!-- <input id="name" type="text" value="{{name}}" (input)="setName($event)" > -->
-
-<div *ngIf="name !== ''" [ngClass]="name === '' ? 'empty' : 'filled'">
-  Your name is: {{name}}
-</div>
-
-
-<ul>
-  <li *ngFor="let item of list">{{ item }}</li>
-</ul>
-
-
-<mat-card>
-  <mat-card-title>Slider Demo</mat-card-title>
-  <mat-slider [(ngModel)]="sliderValue"></mat-slider>
-  <mat-card-content>The actual Slider Value is {{sliderValue}}%</mat-card-content>
-  <mat-card-actions>
-      <button mat-button (click)="sliderValue = sliderValue > 0 ? sliderValue - 1 : sliderValue">-</button>
-      <button mat-button (click)="sliderValue = sliderValue < 100 ? sliderValue + 1 : sliderValue">+</button>
-  </mat-card-actions>
-</mat-card>

@@ -1,0 +1,30 @@
+.example-card {
+  width: 200px;
+  height: 290px;
+  margin: 10px;
+}
+.blog-container {
+  width: 1010px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    mat-card-content {
+      flex: 1 1 auto;
+      p {
+        background-color: red;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1010px) {
+  .blog-container {
+    width: 760px;
+  }
+}
