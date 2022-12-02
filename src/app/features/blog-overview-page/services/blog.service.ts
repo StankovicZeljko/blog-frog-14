@@ -10,6 +10,7 @@ interface Comment {
 }
 
 export interface Blog {
+  id: number;
   author: string;
   comments: Comment[];
   content: string;
