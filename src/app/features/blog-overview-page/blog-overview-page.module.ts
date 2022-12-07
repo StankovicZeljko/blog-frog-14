@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlogOverviewPageComponent } from './blog-overview-page.component';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
+import { BlogOverviewCardModule } from '../../shared/blog-overview-card/blog-overview-card.module';
 
 const routes: Routes = [{
   path: '',
@@ -18,13 +16,8 @@ const routes: Routes = [{
   ],
   imports: [
     CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    BlogOverviewPageComponent
+    RouterModule.forChild(routes),
+    BlogOverviewCardModule
   ]
 })
 export class BlogOverviewPageModule { }

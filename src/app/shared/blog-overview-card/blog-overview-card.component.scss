@@ -1,0 +1,17 @@
+.example-card {
+  width: 200px;
+  margin: 10px;
+}
+mat-card {
+  display: flex;
+  flex-direction: column;
+  mat-card-header {
+    height: 120px;
+  }
+  [mat-card-image] {
+    height: 200px;
+  }
+  mat-card-content {
+    flex: 1 1 auto;
+  }
+}
