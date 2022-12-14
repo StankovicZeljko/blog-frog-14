@@ -18,9 +18,7 @@ export interface Blog {
   likes: number;
   title: string;
 }
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class BlogService {
   constructor(private httpClient: HttpClient) {}
 

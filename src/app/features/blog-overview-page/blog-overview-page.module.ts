@@ -4,6 +4,7 @@ import { BlogOverviewPageComponent } from './blog-overview-page.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { BlogOverviewCardModule } from '../../shared/blog-overview-card/blog-overview-card.module';
+import { BlogService } from './services/blog.service';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,7 @@ const routes: Routes = [{
     CommonModule,
     RouterModule.forChild(routes),
     BlogOverviewCardModule
-  ]
+  ],
+  providers: [BlogService]
 })
 export class BlogOverviewPageModule { }
