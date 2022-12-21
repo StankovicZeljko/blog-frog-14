@@ -1,7 +1,15 @@
-<div class="blog-container" *ngIf="blogs">
-  <ng-container *ngFor="let blog of blogs; let i = index">
-    <app-blog-overview-card [model]="blog" [index]="i" [routerLink]="['/detail/', blog.id]"></app-blog-overview-card>
+<div class="blog-container" *ngIf="state$ | async; let state">
+  <ng-container *ngIf="!state.loading; else loading">
+    <ng-container *ngIf="!state.error; else error">
+      <ng-container *ngFor="let blog of state.blogs; let i = index">
+        <app-blog-overview-card [attr.data-test-id]="'overview-card-'+ i" [model]="blog" [index]="i" (blogSelected)="selectBlog($event)"></app-blog-overview-card>
+      </ng-container>
+    </ng-container>
   </ng-container>
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+  <ng-template #error>
+    Oups, die Blogs konnten nicht geladen werden. Bitte versuchen Sie es später nochmals.
+  </ng-template>
 </div>
-
-

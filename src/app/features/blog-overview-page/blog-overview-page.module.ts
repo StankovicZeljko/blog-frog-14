@@ -5,21 +5,25 @@ import { BlogOverviewPageComponent } from './blog-overview-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogOverviewCardModule } from '../../shared/blog-overview-card/blog-overview-card.module';
 import { BlogService } from './services/blog.service';
+import { BlogOverviewState } from './state/blog-overview-state';
 
-const routes: Routes = [{
-  path: '',
-  component: BlogOverviewPageComponent
-}];
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: BlogOverviewPageComponent,
+  },
+];
 
 @NgModule({
-  declarations: [
-    BlogOverviewPageComponent
-  ],
+  declarations: [BlogOverviewPageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    BlogOverviewCardModule
+    BlogOverviewCardModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [BlogService]
+  providers: [BlogService, BlogOverviewState],
 })
-export class BlogOverviewPageModule { }
+export class BlogOverviewPageModule {}
