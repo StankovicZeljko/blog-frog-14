@@ -8,6 +8,8 @@
       <span>Blog Frog</span>
       <span class="spacer"></span>
 
+      <button *ngIf="showCreateButton$ | async" id="add-blog" [routerLink]="['/add-blog/']" mat-flat-button color="primary">Erstelle einen neuen Blog!</button>
+
       <ng-container *ngIf="loginResponse.isAuthenticated; then loggedIn; else loggedOut"></ng-container>
 
       <ng-template #loggedOut>

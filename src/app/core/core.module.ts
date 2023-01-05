@@ -9,11 +9,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HeaderComponent } from './header/header.component';
 import { AuthConfigModule } from './auth/auth-config.module';
+import { RouterModule } from '@angular/router';
+import { PageNotFoundPageComponent } from './static/page-not-found-page/page-not-found-page.component';
+import { ErrorPageComponent } from './static/error-page/error-page.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, PageNotFoundPageComponent, ErrorPageComponent],
   imports: [
     CommonModule,
+    RouterModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -22,6 +26,6 @@ import { AuthConfigModule } from './auth/auth-config.module';
     MatDividerModule,
     AuthConfigModule,
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, PageNotFoundPageComponent, ErrorPageComponent],
 })
 export class CoreModule {}

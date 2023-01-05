@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './core/auth/authentication.guard';
+import { ErrorPageComponent } from './core/static/error-page/error-page.component';
+import { PageNotFoundPageComponent } from './core/static/page-not-found-page/page-not-found-page.component';
 
 const routes: Routes = [
   {
@@ -16,7 +19,17 @@ const routes: Routes = [
     path: 'detail',
     loadChildren: () => import('./features/blog-detail-page/blog-detail-page.module')
     .then(m => m.BlogDetailPageModule)
-  }
+  },
+  {
+    path: 'add-blog',
+    loadChildren: () => import('./features/add-blog-page/add-blog-page.module').then(m => m.AddBlogPageModule),
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'error',
+    component: ErrorPageComponent,
+  },
+  { path: '**', component: PageNotFoundPageComponent },
 ];
 
 @NgModule({

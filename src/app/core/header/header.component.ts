@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { LoginResponse } from 'angular-auth-oidc-client';
 import { map, Observable, ReplaySubject } from 'rxjs';
+import { hasRole } from '../auth/jwt';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,8 @@ import { map, Observable, ReplaySubject } from 'rxjs';
 export class HeaderComponent {
   initials$: Observable<string>;
   loginResponse$ = new ReplaySubject<LoginResponse | null>();
+  showCreateButton$: Observable<boolean>;
+
 
   @Output('login') login$ = new EventEmitter();
   @Output('logoff') logoff$ = new EventEmitter();
@@ -35,5 +38,10 @@ export class HeaderComponent {
           .join('')
       )
     );
+
+    this.showCreateButton$ = this.loginResponse$.pipe(
+      map(response => hasRole('user', response?.accessToken)),
+    );
+
   }
 }
