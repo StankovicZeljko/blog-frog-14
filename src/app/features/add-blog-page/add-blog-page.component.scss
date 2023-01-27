@@ -1,5 +1,16 @@
 :host {
 
+  .mat-icon {
+    padding-right: 5px;
+  }
+
+  .mat-toolbar.mat-primary {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
   .submit-button {
     margin-bottom: 10px;
     margin-top: 20px;

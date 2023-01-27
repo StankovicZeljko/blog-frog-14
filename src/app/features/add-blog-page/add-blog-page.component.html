@@ -1,3 +1,8 @@
+<mat-toolbar color="primary" [routerLink]="['/overview/']">
+  <mat-icon>arrow_back</mat-icon>Zurück zur Übersicht
+</mat-toolbar>
+
+
 <div class="blog-container" *ngIf="state$ | async; let state">
   <ng-container *ngIf="!state.loading; else loading">
     <ng-container *ngIf="!state.error; else error">
