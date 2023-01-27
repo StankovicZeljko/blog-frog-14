@@ -1,1 +1,48 @@
-<p>add-blog-page works!</p>
+<div class="blog-container" *ngIf="state$ | async; let state">
+  <ng-container *ngIf="!state.loading; else loading">
+    <ng-container *ngIf="!state.error; else error">
+
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="blog-input">
+            <button class="submit-button" [disabled]="!form.valid" mat-raised-button color="primary">Publish blog</button>
+            <button mat-raised-button color="secondary" (click)="form.reset()">Reset</button>
+            <div class="blog-input" formGroupName="blogdata">
+              <mat-form-field appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title">
+              <mat-error>
+                <p *ngIf="form?.get('title')?.errors?.['required']">Title should not be empty</p>
+                <p *ngIf="form?.controls?.['title']?.errors?.['pattern']">Not a valid Title</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Tell your story...</mat-label>
+              <textarea matInput rows="20" formControlName="content"></textarea>
+              <mat-error>Content should not be empty</mat-error>
+            </mat-form-field>
+            </div>
+            <mat-error>
+              <p *ngIf="form?.get('blogdata')?.get('title')?.errors?.['required']">Title should not be empty</p>
+              <p *ngIf="form?.get('blogdata')?.get('title')?.errors?.['pattern']">Not a valid Title</p>
+              <p *ngIf="form?.get('blogdata')?.get('content')?.errors?.['required']">Content Required</p>
+              <p *ngIf="form?.get('blogdata')?.get('title')?.errors?.['custom']">Custom Validator</p>
+              <p *ngIf="form?.get('blogdata')?.get('title')?.errors?.['customAsync']">Custom Async Validator</p>
+            </mat-error>
+          </div>
+        </form>
+
+
+    </ng-container>
+  </ng-container>
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+  <ng-template #error>
+    Oups, die Blogs konnten nicht geladen werden. Bitte versuchen Sie es später nochmals.
+  </ng-template>
+</div>
+
+
+
+

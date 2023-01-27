@@ -7,7 +7,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     const message = error.message ? error.message : error.toString();
     this.postCustomData(error, message);
-    if (!environment.production) {
+    if (environment.production) {
       window.location.href = '/error';
     } else {
       console.log('ERROR ->', error);
