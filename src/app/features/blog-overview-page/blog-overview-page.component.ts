@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { first, Observable, Subject, take, takeUntil, withLatestFrom } from 'rxjs';
 import { Blog, BlogService } from './services/blog.service';
 import { BlogOverviewState, BlogState } from './state/blog-overview-state';
 
@@ -11,6 +11,7 @@ import { BlogOverviewState, BlogState } from './state/blog-overview-state';
 })
 export class BlogOverviewPageComponent implements OnInit {
   state$: Observable<BlogState>;
+  destroy$ = new Subject();
 
   constructor(
     private blogService: BlogService,
@@ -32,6 +33,25 @@ export class BlogOverviewPageComponent implements OnInit {
         error: (error as Error).message,
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(undefined);
+    this.destroy$.complete();
+  }
+
+  likeBlog(event: { id: number; likedByMe: boolean }) {
+    this.blogService
+      .likeBlog(event.id, event.likedByMe)
+      .pipe(first(), withLatestFrom(this.state$), takeUntil(this.destroy$))
+      .subscribe(([, state]) => {
+        const index = state.blogs.findIndex((b) => b.id === event.id);
+        state.blogs[index] = {
+          ...state.blogs[index],
+          likedByMe: !event.likedByMe,
+        };
+        this.blogOverviewState.setState(state);
+      });
   }
 
   selectBlog(id: number) {

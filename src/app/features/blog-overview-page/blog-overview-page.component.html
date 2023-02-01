@@ -1,9 +1,13 @@
 <div class="blog-container" *ngIf="state$ | async; let state">
   <ng-container *ngIf="!state.loading; else loading">
     <ng-container *ngIf="!state.error; else error">
-      <ng-container *ngFor="let blog of state.blogs; let i = index">
-        <app-blog-overview-card [attr.data-test-id]="'overview-card-'+ i" [model]="blog" [index]="i" (blogSelected)="selectBlog($event)"></app-blog-overview-card>
-      </ng-container>
+      <mat-grid-list cols="1" gutterSize="20" rowHeight="1:1.75" [gridCols]="{xs: 1, sm: 2, md: 3, lg: 4, xl: 5}">
+        <mat-grid-tile *ngFor="let blog of state.blogs; let i = index">
+          <app-blog-overview-card [model]="blog" [index]="i"
+             (likeBlog)="likeBlog($event)" (selectBlog)="selectBlog($event)">
+          </app-blog-overview-card>
+        </mat-grid-tile>
+      </mat-grid-list>
     </ng-container>
   </ng-container>
   <ng-template #loading>

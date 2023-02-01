@@ -1,17 +1,28 @@
-
-.blog-container {
-  width: 1010px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-
-}
-@media screen and (max-width: 1010px) {
+:host {
+  .mat-grid-list {
+    margin: 20px;
+  }
+  ::ng-deep .mat-grid-tile-content {
+    align-items: stretch !important;
+  }
   .blog-container {
-    width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media only screen and (min-width: 1280px) and (max-width: 1919.98px) {
+    .blog-container {
+      width: 988px;
+    }
+  }
+  @media only screen and (min-width: 960px) and (max-width: 1279.98px) {
+    .blog-container {
+      width: 736px;
+    }
+  }
+  @media only screen and (min-width: 600px) and (max-width: 959.98px) {
+    .blog-container {
+      width: 484px;
+    }
   }
 }

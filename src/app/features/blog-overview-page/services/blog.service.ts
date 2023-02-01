@@ -27,4 +27,10 @@ export class BlogService {
       this.httpClient.get<Blog[]>(`${environment.serviceUrl}/entries`)
     );
   }
+
+  likeBlog(id: number, likedByMe: boolean) {
+    return this.httpClient.put(`${environment.serviceUrl}/entries/${id}/like-info`, {
+      likedByMe: !likedByMe,
+    });
+  }
 }

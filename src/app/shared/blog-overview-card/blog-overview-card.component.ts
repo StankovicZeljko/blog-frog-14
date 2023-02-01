@@ -1,17 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
-export type BlogModel = {
+export interface BlogModel {
   author: string;
   title: string;
   id: number;
-};
+  likedByMe: boolean;
+}
 
 @Component({
   selector: 'app-blog-overview-card',
@@ -19,14 +13,11 @@ export type BlogModel = {
   styleUrls: ['./blog-overview-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogOverviewCardComponent implements OnInit {
+export class BlogOverviewCardComponent {
+
   @Input() model!: BlogModel;
   @Input() index!: number;
-  @Output('blogSelected') blogSelected$ = new EventEmitter<number>();
+  @Output('likeBlog') likeBlog$ = new EventEmitter<{ id: number, likedByMe: boolean}>();
+  @Output('selectBlog') selectBlog$ = new EventEmitter<number>();
 
-  ngOnInit(): void {}
-
-  selectBlog() {
-    this.blogSelected$.emit(this.model.id);
-  }
 }

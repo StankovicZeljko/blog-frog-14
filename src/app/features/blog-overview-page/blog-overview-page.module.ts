@@ -8,6 +8,8 @@ import { BlogService } from './services/blog.service';
 import { BlogOverviewState } from './state/blog-overview-state';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ResponsiveGridColumnsModule } from '../../shared/responsive-grid-columns/responsive-grid-columns.module';
 
 const routes: Routes = [
   {
@@ -23,6 +25,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     BlogOverviewCardModule,
     MatProgressSpinnerModule,
+    MatGridListModule,
+    ResponsiveGridColumnsModule
   ],
   providers: [BlogService, BlogOverviewState],
 })

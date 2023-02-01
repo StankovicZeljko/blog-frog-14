@@ -1,13 +1,18 @@
 <mat-card class="example-card">
-  <div (click)="selectBlog()">
-    <mat-card-header>
-      <mat-card-title>{{ model.title }}</mat-card-title>
-      <mat-card-subtitle>{{ model.author }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{ 'https://picsum.photos/232/20' + index }}" alt="Random Photo">
-  </div>
+  <mat-card-header (click)="selectBlog$.emit(model.id)">
+    <mat-card-title data-testid="title">{{ model.title }}</mat-card-title>
+    <mat-card-subtitle>{{ model.author }}</mat-card-subtitle>
+  </mat-card-header>
+  <img (click)="selectBlog$.emit(model.id)" mat-card-image
+    src="{{ 'https://picsum.photos/seed/' + model.id + '/232/200' }}" alt="Random Photo">
+  <span class="spacer"></span>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button data-testid="like-button" mat-icon-button aria-label="Example icon button with a heart icon"
+      (click)="likeBlog$.emit({ id: model.id, likedByMe: model.likedByMe})">
+      <mat-icon [ngStyle]="{ color: model.likedByMe ? 'red' : 'black' }">favorite</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon button with a heart icon">
+      <mat-icon>share</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>
