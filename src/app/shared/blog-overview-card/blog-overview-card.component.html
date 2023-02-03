@@ -9,7 +9,7 @@
   <mat-card-actions>
     <button data-testid="like-button" mat-icon-button aria-label="Example icon button with a heart icon"
       (click)="likeBlog$.emit({ id: model.id, likedByMe: model.likedByMe})">
-      <mat-icon [ngStyle]="{ color: model.likedByMe ? 'red' : 'black' }">favorite</mat-icon>
+      <mat-icon data-testid="like-button-icon" [ngStyle]="{ color: model.likedByMe ? 'red' : 'black' }">favorite</mat-icon>
     </button>
     <button mat-icon-button aria-label="Example icon button with a heart icon">
       <mat-icon>share</mat-icon>
