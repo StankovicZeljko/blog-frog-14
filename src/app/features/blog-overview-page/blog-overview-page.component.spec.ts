@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockProvider } from 'ng-mocks';
 
 import { BlogOverviewPageComponent } from './blog-overview-page.component';
+import { BlogService } from './services/blog.service';
+import { BlogOverviewState } from './state/blog-overview-state';
 
 describe('BlogOverviewPageComponent', () => {
   let component: BlogOverviewPageComponent;
@@ -8,7 +11,8 @@ describe('BlogOverviewPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlogOverviewPageComponent ]
+      declarations: [ BlogOverviewPageComponent ],
+      providers: [MockProvider(BlogService), MockProvider(BlogOverviewState)]
     })
     .compileComponents();
 

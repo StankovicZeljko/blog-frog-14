@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { MockProvider } from 'ng-mocks';
+import { Observable, of } from 'rxjs';
 
 import { BlogDetailPageComponent } from './blog-detail-page.component';
 
@@ -8,7 +11,8 @@ describe('BlogDetailPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlogDetailPageComponent ]
+      declarations: [ BlogDetailPageComponent ],
+      providers: [MockProvider(ActivatedRoute, { params: of({ id: '1' }) })]
     })
     .compileComponents();
 

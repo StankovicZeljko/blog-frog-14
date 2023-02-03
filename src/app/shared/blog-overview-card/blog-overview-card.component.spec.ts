@@ -14,6 +14,9 @@ describe('BlogOverviewCardComponent', () => {
 
     fixture = TestBed.createComponent(BlogOverviewCardComponent);
     component = fixture.componentInstance;
+
+    component.model = { author: 'author', title: 'title', id: 1, likedByMe: true };
+    component.index = 1;
     fixture.detectChanges();
   });
 
